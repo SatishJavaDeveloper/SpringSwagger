@@ -17,7 +17,6 @@ import org.springframework.stereotype.Component;
 
 /**
  * @author Satish Reddy
- *
  */
 @Component
 public class JwtFilter implements Filter {
@@ -26,6 +25,8 @@ public class JwtFilter implements Filter {
 	 */
 	@Override
 	public void destroy() {
+		
+		
 		// TODO Auto-generated method stub
 		
 	}

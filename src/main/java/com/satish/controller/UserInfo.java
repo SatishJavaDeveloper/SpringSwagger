@@ -193,7 +193,7 @@ public class UserInfo {
 	}
 	//
 	
-	@ApiOperation("UserLogin")
+	/*@ApiOperation("UserLogin")
 	@RequestMapping(value="Users/Login", method=RequestMethod.POST)
 	public Users queue(@RequestBody Users user,HttpServletRequest req,HttpServletResponse res) throws IOException
 	{
@@ -211,7 +211,7 @@ public class UserInfo {
 			res.sendError(400);
 		System.out.println("response headers>>>>>>>>>>>>>");
 		return user;
-	}
+	}*/
 	//
 	@ApiOperation("UserLoginRecurly")
 	@RequestMapping(value="Users/Recurly", method=RequestMethod.GET)
