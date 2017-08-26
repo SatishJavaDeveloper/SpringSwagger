@@ -23,11 +23,15 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.ning.billing.recurly.RecurlyClient;
 import com.ning.billing.recurly.model.Account;
 import com.ning.billing.recurly.model.Address;
+import com.ning.billing.recurly.model.BillingInfo;
 import com.ning.billing.recurly.model.Invoice;
 import com.ning.billing.recurly.model.Invoices;
 import com.ning.billing.recurly.model.Plan;
 import com.ning.billing.recurly.model.Plans;
 import com.ning.billing.recurly.model.RecurlyUnitCurrency;
+import com.ning.billing.recurly.model.Subscription;
+import com.ning.billing.recurly.model.SubscriptionUpdate;
+import com.ning.billing.recurly.model.SubscriptionUpdate.Timeframe;
 import com.satish.service.LoginService;
 import com.satish.vo.Accounts;
 import com.satish.vo.Users;
@@ -243,45 +247,91 @@ public class UserInfo {
    return inv;
    }*/
    //  return user;
-	return accounts.toArray().toString();
+System.out.println("rest:"+accounts.size());
+
+System.out.println("res:");
+    return accounts.toArray().toString();
 	}
 	@ApiOperation("UserLogin")
 	@RequestMapping(value="Users/Plans", method=RequestMethod.GET)
-	public Users createPlan(@RequestBody Users user,HttpServletRequest req,HttpServletResponse res) throws IOException, KeyManagementException, NoSuchAlgorithmException
+	public Subscription createSubscription(HttpServletRequest req,HttpServletResponse res) throws IOException, KeyManagementException, NoSuchAlgorithmException
 	{
 		//res.setContentType("application/octet-stream");
-		/*final String apiKey = "ea67a580ff3d43c7b810b5b1bc7d0a2c";     
+		final String apiKey = "ea67a580ff3d43c7b810b5b1bc7d0a2c";     
 	    final String Domain = "satish";
-
+	    Subscription subs=new Subscription();
+	    subs.setCurrency("USD");
+	    
 	    Account account = new Account();
-	    user.setAccountCode("7864854309");
-	    user.setFirstName("Jeet");
-	    user.setEmail("satish270694@gmail.com");
+	    account.setAccountCode("8758578");
+	    account.setFirstName("satish");
+	    account.setEmail("satish270694@gmail.com");
+	    
 	    Address ad=new Address();
 	    ad.setCity("Hyderabad");
-	    user.setAddress(ad);
-	    Plan plan=new Plan();
+	    account.setAddress(ad);
+	    
+	    BillingInfo bill=new BillingInfo();
+	    bill.setAddress1("Hyderabad");
+	    bill.setCompany("IT");
+	    bill.setCity("Hyderabad");
+	    bill.setNumber("4111-1111-1111-1111");
+bill.setMonth(1);
+bill.setYear(2019);
+bill.setZip("94117");
+bill.setCountry("US");
+bill.setVerificationValue("836");
+bill.setState("Texas");
+	    //bill.setAccount(account);
+	   
+	    account.setBillingInfo(bill);
+	    subs.setAccount(account);
+	    subs.setPlanCode("diamond");
+	   
+	    /*Plan plan=new Plan();
 	    plan.setName("Enterprise");
 	    plan.setPlanCode("5124");
 	    RecurlyUnitCurrency curs=new RecurlyUnitCurrency();
 	    curs.setUnitAmountUSD(900);
 	   plan.setSetupFeeInCents(curs);
 	    Plans pl=new Plans();
-	    pl.add(plan);
+	    pl.add(plan);*/
 	    
-	   // plan.setPlanIntervalUnit(1);
+	   /* plan.setPlanIntervalUnit(1);
 	    
-//	    plan.setUnitAmountInCents("898.00");
+    plan.setUnitAmountInCents("898.00");
 	    
-	   // plan.setPlanIntervalUnit("3 Months");
+	   plan.setPlanIntervalUnit("3 Months");
 	    System.out.println("curs.getUnitAmountUSD()"+curs.getUnitAmountUSD());
 	    RecurlyClient recurlyClient =new RecurlyClient(apiKey);
 
 	    // opening the recurly server.
 	    recurlyClient.open();
-	    recurlyClient.createPlan(plan);
-*/
-		return user;	    
+	    return recurlyClient.createPlan(plan);*/
+	    RecurlyClient recurlyClient =new RecurlyClient(apiKey);
+	    subs.setRecurlyClient(recurlyClient);
+	    // opening the recurly server.
+	    recurlyClient.open();
+	    
+	    return recurlyClient.createSubscription(subs);
+			    
+	}
+	@ApiOperation("UserLogin")
+	@RequestMapping(value="Users/UpdateSubscription", method=RequestMethod.GET)
+	public Subscription updateSubscription() throws KeyManagementException, NoSuchAlgorithmException
+	{final String apiKey = "ea67a580ff3d43c7b810b5b1bc7d0a2c";     
+    final String Domain = "satish";
+		
+    RecurlyClient recurlyClient =new RecurlyClient(apiKey);
+    recurlyClient.open();
+    SubscriptionUpdate subs=new SubscriptionUpdate();
+    subs.setTimeframe(Timeframe.now);
+    subs.setPlanCode("1234");
+    subs.setQuantity(1);
+    return recurlyClient.updateSubscription("3f88d1420bcc7c11997ad54833be703e", subs);
+    
+    
+    
 	}
 	
 }
