@@ -11,6 +11,7 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -38,8 +39,15 @@ public class JwtFilter implements Filter {
 	public void doFilter(ServletRequest arg0, ServletResponse arg1, FilterChain arg2)
 			throws IOException, ServletException {
 		// TODO Auto-generated method stub
+		HttpServletResponse response=(HttpServletResponse) arg1;
 		System.out.println("hello>>>>>>>>>>>>>>>>>>>:");	
 		System.out.println(" get method>>>>>>>>>>>>>>>>>"+arg0.getAttributeNames());
+		 response.addHeader("Access-Control-Allow-Origin", "*");
+	        response.addHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, PATCH, HEAD, OPTIONS");
+	        response.addHeader("Access-Control-Allow-Headers", "Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
+	        response.addHeader("Access-Control-Expose-Headers", "Access-Control-Allow-Origin, Access-Control-Allow-Credentials");
+	        response.addHeader("Access-Control-Allow-Credentials", "true");
+	        response.addIntHeader("Access-Control-Max-Age", 10);
 		arg2.doFilter(arg0, arg1);
 		
 	}
