@@ -1,0 +1,71 @@
+{
+    "_id" : ObjectId("5a28247251957ae425869a5d"),
+    "planId" : "free_trial",
+    "modules" : [ 
+        {
+            "moduleId" : "",
+            "name" : "DashBoard",
+            "status" : "Y"
+        }, 
+        {
+            "moduleId" : "",
+            "name" : "Test Drive",
+            "status" : "Y"
+        }, 
+        {
+            "moduleId" : "",
+            "name" : "Quick Wizard",
+            "status" : "Y"
+        }, 
+        {
+            "moduleId" : "",
+            "name" : "Wi-Fi Board",
+            "status" : "Y"
+        }, 
+        {
+            "moduleId" : "",
+            "name" : "GPRS Board",
+            "status" : "Y"
+        }, 
+        {
+            "moduleId" : "",
+            "name" : "Reference Design",
+            "status" : "Y"
+        }, 
+        {
+            "moduleId" : "",
+            "name" : "Assets",
+            "status" : "Y"
+        }, 
+        {
+            "moduleId" : "",
+            "name" : "Sites",
+            "status" : "Y"
+        }, 
+        {
+            "moduleId" : "",
+            "name" : "Instances",
+            "status" : "Y"
+        }, 
+        {
+            "moduleId" : "",
+            "name" : "Instance Groups",
+            "status" : "Y"
+        }, 
+        {
+            "moduleId" : "",
+            "name" : "Firmware Upgrade",
+            "status" : "Y"
+        }, 
+        {
+            "moduleId" : "",
+            "name" : "SinglePush",
+            "status" : "Y"
+        }, 
+        {
+            "moduleId" : "",
+            "name" : "MultiPush",
+            "status" : "Y"
+        }
+    ]
+}
